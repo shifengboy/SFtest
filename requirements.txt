@@ -1,0 +1,8 @@
+allure-pytest
+appium-python-client
+pytest
+pytest-testconfig
+requests
+selenium
+PyYaml
+httprunner

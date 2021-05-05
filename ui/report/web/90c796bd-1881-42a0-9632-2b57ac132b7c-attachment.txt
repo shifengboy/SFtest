@@ -1,0 +1,22 @@
+DEBUG    log:base.py:72 parse_yaml.path:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/koubei/main_page.yml
+DEBUG    log:base.py:73 parse_yaml.func_name:login
+DEBUG    log:base.py:61 find.by:id
+DEBUG    log:base.py:62 find.locator:J-qrcode-target
+DEBUG    log:base.py:61 find.by:id
+DEBUG    log:base.py:62 find.locator:J-input-user
+DEBUG    log:base.py:61 find.by:id
+DEBUG    log:base.py:62 find.locator:password_rsainput
+DEBUG    log:base.py:61 find.by:id
+DEBUG    log:base.py:62 find.locator:J-login-btn
+DEBUG    log:base.py:72 parse_yaml.path:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/koubei/pintuan_page.yml
+DEBUG    log:base.py:73 parse_yaml.func_name:selection_button
+DEBUG    log:base.py:61 find.by:xpath
+DEBUG    log:base.py:62 find.locator://*[contains(@class,"anticon-plus")]
+DEBUG    log:base.py:72 parse_yaml.path:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/koubei/pintuan_page.yml
+DEBUG    log:base.py:73 parse_yaml.func_name:item_table
+DEBUG    log:base.py:61 find.by:xpath
+DEBUG    log:base.py:62 find.locator:(//*[@class="ant-table-tbody"]//*[@class="ant-radio-wrapper"])[1]
+DEBUG    log:base.py:72 parse_yaml.path:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/koubei/pintuan_page.yml
+DEBUG    log:base.py:73 parse_yaml.func_name:confirm_button
+DEBUG    log:base.py:61 find.by:xpath
+DEBUG    log:base.py:62 find.locator://*[@class="ant-modal-footer"]/button[span="确 定"]

@@ -1,0 +1,49 @@
+login:
+# 登陆
+  - by : id
+    locator: 'J-qrcode-target'
+    action: clear,click
+
+  - by: id
+    locator: 'J-input-user'
+    action: send_keys
+    context: 'kbtestyufabu21@alipay.com'
+
+  - by : id
+    locator: 'password_rsainput'
+    action: send_keys
+    context: 'koubei21'
+
+  - by: id
+    locator: 'J-login-btn'
+    action: click
+
+business_menu:
+# 商家营销菜单
+  - by : xpath
+    locator: '//*[@class="menu-group "][1]'
+    action: click
+
+marketing_too_menu:
+# 通用营销工具菜单
+  - by : xpath
+    locator: '//div[a="通用营销工具"]'
+    action: click
+
+item_table:
+# 商品tab
+  - by : xpath
+    locator: '//*[@id="create-activity"]//span[3]'
+    action: click
+
+item_pintuan:
+# 商品pint
+  - by : xpath
+    locator: '//*[@class="ITEM_GROUP_item"]/a'
+    action: click
+
+create_activity_button:
+# 创建活动
+  - by : xpath
+    locator: '//*[contains(@class,"create-base-button")]'
+    action: click

@@ -1,0 +1,19 @@
+selection_button:
+# 选品
+  - by : xpath
+    locator: '//*[contains(@class,"anticon-plus")]'
+    action: click
+
+item_table:
+#  商品列表
+  - by: xpath
+    locator: '(//*[@class="ant-table-tbody"]//*[@class="ant-radio-wrapper"])[1]'
+    action: click
+
+confirm_button:
+#  选品确定按钮
+  - by: xpath
+    locator: '//*[@class="ant-modal-footer"]/button[span="确 定"]'
+    action: click
+
+# a=document.getElementsByClassName('ant-calendar-range-picker ant-input ant-input-lg')[1];a.removeAttribute("readonly");a.value="2021-06-02 00:00:00"

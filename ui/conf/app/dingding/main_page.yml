@@ -1,0 +1,69 @@
+login:
+# 登陆
+  - by : id
+    loactor: 'com.alibaba.android.rimet:id/et_phone_input'
+    action: clear,send_keys
+    context: '18658127166'
+
+  - by: id
+    loactor: 'com.alibaba.android.rimet:id/et_pwd_login'
+    action: send_keys
+    context: '123456'
+
+  - by : id
+    loactor: 'com.alibaba.android.rimet:id/tv'
+    action: click
+
+goto_workbench:
+# 进入工作台
+  - by : xpath
+    loactor: '//*[@text="工作台"]'
+    action: click
+
+chose_company:
+# 选择企业
+  - by: id
+    loactor: 'com.alibaba.android.rimet:id/menu_current_company'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@text="阿里外包钉钉考勤专用组"]'
+    action: click
+
+goto_attendance:
+# 进入考勤页
+  - by: -android uiautomator
+    loactor: 'new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text("考勤打卡").instance(0));'
+    action: click
+
+clock_in:
+# 上班打卡
+  - by : xpath
+    loactor: '//*[@text="上班打卡"]'
+    action: click
+
+clock_out:
+# 下班打卡
+  - by : xpath
+    loactor: '//*[@text="下班打卡"]'
+    action: click
+
+update_clock_out:
+# 更新下班打卡
+  - by : xpath
+    loactor: '//*[@text="更新打卡"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@text="确定"]'
+    action: click
+
+#cheack_result:
+## 更新下班打卡
+#  - by : xpath
+#    loactor: '//*[@text="更新打卡"]'
+#    action: click
+#
+#  - by: xpath
+#    loactor: '//*[@text="确定"]'
+#    action: click
