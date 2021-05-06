@@ -2,7 +2,7 @@ login:
 # 登陆
   - by : id
     locator: 'J-qrcode-target'
-    action: clear,click
+    action: click
 
   - by: id
     locator: 'J-input-user'

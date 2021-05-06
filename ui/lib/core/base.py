@@ -115,7 +115,7 @@ class Base:
             by = step['by']
             locator = step['locator']
             action = step['action']
-            logger.debug(f'对元素{locator},进行{action}操作')
+            logger.debug(f'对元素{by}，{locator}）,进行{action}操作')
             try:
                 if 'clear' in action:  # 清除输入框
                     self.find(by, locator, *args, **kargs).clear()
@@ -134,7 +134,7 @@ class Base:
                     target = self.find(step['by'], step['locator_target'], *args, **kargs)
                     ActionChains(self.driver).drag_and_drop(el, target).perform()
             except Exception as e:
-                logger.debug(f'对元素{locator},进行{action}操作错误：{e}')
+                logger.debug(f'对元素{by}，{locator}）,进行{action}操作时出现错误：{e}')
                 raise e
 
     def js(self, script):

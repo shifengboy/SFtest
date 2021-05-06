@@ -1,6 +1,6 @@
 allure-pytest
 appium-python-client
-pytest
+pytest==5.4.3
 pytest-testconfig
 requests
 selenium
