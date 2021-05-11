@@ -5,8 +5,7 @@
 @file:base.py
 @time:2021/05/01
 """
-
-# import logging
+import os
 
 import yaml
 from selenium import webdriver
@@ -20,12 +19,19 @@ from ui.lib.core.handle_black import handle_black
 from ui.lib.core.logger import logger
 
 
+def get_env():
+    # 获取测试环境
+    try:
+        env = os.environ["env"]
+        logger.debug(f'本次UI自动化运行环境为{env}环境')
+    except KeyError:
+        env = 'prod'
+        logger.debug(f'没有配置测试环境, 默认在生产环境{env}进行自动化测试')
+    return env
+
+
 class Base:
-    # root_logger = logging.getLogger()
-    # print(f"root_logger.handlers:{root_logger.handlers}")
-    # for h in root_logger.handlers[:]:
-    #     root_logger.removeHandler(h)
-    # logging.basicConfig(level=logging.INFO)
+
     black_list = [(By.XPATH, '//*[@class="btn2"]')]
     max_num = 3
     err_num = 0
@@ -64,10 +70,39 @@ class Base:
         '''
         打开连接
         :param url:
-        :return:
+        :return:url_name
         '''
         logger.debug(f'打开链接{url}')
         self.driver.get(url)
+
+    def open_by_yaml(self, path, url_name, func_name='url'):
+        '''
+        打开连接
+        :param url:
+        :return:
+        '''
+        env = get_env()
+        with open(path, encoding='UTF-8') as f:
+            datas = yaml.safe_load(f)
+            data_env = datas['env']
+            if env in data_env:
+                url_base = data_env[env]
+                logger.debug(f'在配置中找到环境{env}，开始运行')
+            else:
+                logger.error(f'在配置中未找到环境{env}，请配置该环境活动确认环境是否正确')
+                raise Exception('环境有误！')
+            steps = datas[func_name]
+            for step in steps:
+                if url_name in step:
+                    url_relative = step[url_name]
+                    url = url_base + url_relative
+                    logger.debug(f'打开链接:{url}')
+                    self.driver.get(url)
+                    break
+            else:
+                logger.error(f'链接打开失败，请检查链接名{url_name}是否正确！')
+                raise Exception(f'链接打开失败，请检查链接名{url_name}是否正确！')
+
 
     def quit_driver(self):
         self.driver.quit()
@@ -252,3 +287,10 @@ class Base:
         for handle in all_handles:
             if handle != original_windows:
                 self.driver.switch_to.window(handle)
+
+if __name__ == '__main__':
+    with open('/Users/chenshifeng/MyCode/PythonCode/sftest/ui/conf/web/12306/main_page.yml', encoding='UTF-8') as f:
+        datas = yaml.safe_load(f)
+        print(datas['env'])
+        if 'dev2' in datas['env']:
+            print("ok")

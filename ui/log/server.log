@@ -558,3 +558,89 @@
 [2021-05-03 22:15:23,074] [DEBUG] [base.py:parse_yaml:73] parse_yaml.func_name:confirm_button
 [2021-05-03 22:15:23,635] [DEBUG] [base.py:find:61] find.by:xpath
 [2021-05-03 22:15:23,635] [DEBUG] [base.py:find:62] find.locator://*[@class="ant-modal-footer"]/button[span="确 定"]
+[2021-05-11 00:55:43,003] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 00:55:43,128] [DEBUG] [base.py:open:69] 打开链接https://www.12306.cn/index/
+[2021-05-11 00:55:44,957] [DEBUG] [base.py:parse_yaml:101] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/12306/main_page.yml，方法名：from_station
+[2021-05-11 00:56:50,509] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 00:56:50,711] [DEBUG] [base.py:open:69] 打开链接https://www.12306.cn/index/
+[2021-05-11 00:56:53,520] [DEBUG] [base.py:parse_yaml:101] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/12306/main_page.yml，方法名：from_station
+[2021-05-11 00:59:22,752] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 00:59:22,955] [DEBUG] [base.py:open:69] 打开链接https://www.12306.cn/index/
+[2021-05-11 00:59:24,869] [DEBUG] [base.py:parse_yaml:101] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/12306/main_page.yml，方法名：from_station
+[2021-05-11 01:03:25,626] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 01:03:25,760] [DEBUG] [base.py:open:69] 打开链接https://www.12306.cn/index/
+[2021-05-11 01:03:27,258] [DEBUG] [base.py:parse_yaml:101] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/12306/main_page.yml，方法名：from_station
+[2021-05-11 01:03:27,260] [DEBUG] [base.py:parse:118] 对元素id，fromStationText）,进行clear,send_keys操作
+[2021-05-11 01:03:27,864] [DEBUG] [base.py:find:83] 查找元素:（id，fromStationText）
+[2021-05-11 01:03:28,329] [DEBUG] [base.py:find:89] 查找元素结果：<selenium.webdriver.remote.webelement.WebElement (session="410e94323114be6caa441df9f078610f", element="14d02331-6af5-4bcc-adaf-d0a09b21387f")>
+[2021-05-11 01:03:29,133] [DEBUG] [base.py:find:83] 查找元素:（id，fromStationText）
+[2021-05-11 01:03:29,155] [DEBUG] [base.py:find:89] 查找元素结果：<selenium.webdriver.remote.webelement.WebElement (session="410e94323114be6caa441df9f078610f", element="14d02331-6af5-4bcc-adaf-d0a09b21387f")>
+[2021-05-11 01:04:13,508] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 01:04:13,639] [DEBUG] [base.py:open:69] 打开链接https://www.12306.cn/index/
+[2021-05-11 01:04:14,203] [DEBUG] [base.py:parse_yaml:101] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/12306/main_page.yml，方法名：from_station
+[2021-05-11 01:10:43,294] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 01:10:43,419] [DEBUG] [base.py:open:69] 打开链接https://www.12306.cn/index/
+[2021-05-11 01:10:44,943] [DEBUG] [base.py:parse_yaml:101] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/12306/main_page.yml，方法名：from_station
+[2021-05-11 01:10:44,945] [DEBUG] [base.py:parse:118] 对元素id，fromStationText）,进行clear,send_keys操作
+[2021-05-11 01:10:45,550] [DEBUG] [base.py:find:83] 查找元素:（id，fromStationText）
+[2021-05-11 01:10:45,977] [DEBUG] [base.py:find:89] 查找元素结果：<selenium.webdriver.remote.webelement.WebElement (session="9b84d54e965bc18cb2175239f66fa74d", element="d95b32a2-e1dc-4e02-953e-451e62964ec1")>
+[2021-05-11 01:10:46,773] [DEBUG] [base.py:find:83] 查找元素:（id，fromStationText）
+[2021-05-11 01:10:46,802] [DEBUG] [base.py:find:89] 查找元素结果：<selenium.webdriver.remote.webelement.WebElement (session="9b84d54e965bc18cb2175239f66fa74d", element="d95b32a2-e1dc-4e02-953e-451e62964ec1")>
+[2021-05-11 01:12:29,338] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 01:12:29,461] [DEBUG] [base.py:open:69] 打开链接https://www.12306.cn/index/
+[2021-05-11 01:12:30,018] [DEBUG] [base.py:parse_yaml:101] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/12306/main_page.yml，方法名：from_station
+[2021-05-11 01:12:30,021] [DEBUG] [base.py:parse:118] 对元素id，fromStationText）,进行click,send_keys操作
+[2021-05-11 01:12:30,797] [DEBUG] [base.py:find:83] 查找元素:（id，fromStationText）
+[2021-05-11 01:12:30,967] [DEBUG] [base.py:find:89] 查找元素结果：<selenium.webdriver.remote.webelement.WebElement (session="e4610b2adf0025b12584c93b561b8935", element="b736588b-c4ae-44f7-82b9-f6d75875899b")>
+[2021-05-11 01:12:31,831] [DEBUG] [base.py:find:83] 查找元素:（id，fromStationText）
+[2021-05-11 01:12:31,853] [DEBUG] [base.py:find:89] 查找元素结果：<selenium.webdriver.remote.webelement.WebElement (session="e4610b2adf0025b12584c93b561b8935", element="b736588b-c4ae-44f7-82b9-f6d75875899b")>
+[2021-05-11 21:10:47,963] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:14:18,021] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:14:18,145] [DEBUG] [base.py:open_by_yaml:81] 打开链接:[{'index': 'https://www.12306.cn/index/index.html'}]
+[2021-05-11 21:24:40,943] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:24:41,165] [DEBUG] [base.py:open_by_yaml:84] 打开链接https://www.12306.cn/index/index.html
+[2021-05-11 21:28:53,175] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:28:53,388] [DEBUG] [base.py:open_by_yaml:85] 打开链接:https://www.12306.cn/index/index.html
+[2021-05-11 21:31:14,284] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:33:29,017] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:33:29,231] [ERROR] [base.py:open_by_yaml:87] 链接打开失败，请检查链接名index1是否正确！
+[2021-05-11 21:49:10,607] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:49:10,732] [ERROR] [base.py:open_by_yaml:88] 链接打开失败，请检查链接名index1是否正确！
+[2021-05-11 21:49:47,253] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:49:47,470] [ERROR] [base.py:open_by_yaml:88] 链接打开失败，请检查链接名index1是否正确！
+[2021-05-11 21:51:46,292] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:51:46,428] [ERROR] [base.py:open_by_yaml:88] 链接打开失败，请检查链接名index1是否正确！
+[2021-05-11 21:54:08,236] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:54:08,369] [ERROR] [base.py:open_by_yaml:88] 链接打开失败，请检查链接名index1是否正确！
+[2021-05-11 21:58:32,033] [DEBUG] [base.py:__init__:53] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 21:58:32,159] [ERROR] [base.py:open_by_yaml:88] 链接打开失败，请检查链接名index1是否正确！
+[2021-05-11 22:51:56,291] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境进行自动化测试
+[2021-05-11 22:52:49,638] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-11 22:53:23,275] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-11 23:01:53,018] [DEBUG] [base.py:__init__:59] 本次使用chrome浏览器进行自动化测试
+[2021-05-11 23:01:53,320] [DEBUG] [base.py:open:75] 打开链接https://e.alipay.com/index.htm
+[2021-05-11 23:01:54,941] [DEBUG] [base.py:parse_yaml:128] 解析yml文件的路径:/Users/chenshifeng/MyCode/PythonCode/SFtest/ui/conf/web/koubei/main_page.yml，方法名：login
+[2021-05-11 23:01:54,948] [DEBUG] [base.py:parse:145] 对元素id，J-qrcode-target）,进行click操作
+[2021-05-11 23:01:56,084] [DEBUG] [base.py:find:110] 查找元素:（id，J-qrcode-target）
+[2021-05-11 23:01:56,479] [DEBUG] [base.py:parse:164] 对元素id，J-qrcode-target）,进行click操作时出现错误：Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=85.0.4183.102)
+
+[2021-05-11 23:11:54,407] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-11 23:12:16,797] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-11 23:22:47,782] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-12 00:00:40,619] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-12 00:01:23,403] [DEBUG] [base.py:get_env:26] 本次UI自动化运行环境为dev环境
+[2021-05-12 00:01:41,544] [DEBUG] [base.py:get_env:26] 本次UI自动化运行环境为dev2环境
+[2021-05-12 00:13:53,327] [DEBUG] [base.py:__init__:59] 本次使用chrome浏览器进行自动化测试
+[2021-05-12 00:13:53,451] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-12 00:13:53,454] [DEBUG] [base.py:open_by_yaml:88] 在配置中找到环境prod，开始运行
+[2021-05-12 00:13:53,455] [ERROR] [base.py:open_by_yaml:100] 链接打开失败，请检查链接名index1是否正确！
+[2021-05-12 00:14:23,461] [DEBUG] [base.py:__init__:59] 本次使用chrome浏览器进行自动化测试
+[2021-05-12 00:14:23,595] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-12 00:14:23,597] [DEBUG] [base.py:open_by_yaml:88] 在配置中找到环境prod，开始运行
+[2021-05-12 00:14:23,597] [DEBUG] [base.py:open_by_yaml:96] 打开链接:index/index.html
+[2021-05-12 00:19:32,839] [DEBUG] [base.py:__init__:59] 本次使用chrome浏览器进行自动化测试
+[2021-05-12 00:19:32,966] [DEBUG] [base.py:get_env:29] 没有配置测试环境, 默认在生产环境prod进行自动化测试
+[2021-05-12 00:19:32,969] [DEBUG] [base.py:open_by_yaml:90] 在配置中找到环境prod，开始运行
+[2021-05-12 00:19:32,970] [DEBUG] [base.py:open_by_yaml:99] 打开链接:https://www.12306.cn/index/index.html

@@ -7,6 +7,8 @@
 """
 import allure
 
+from ui.lib.core.path import WEBPICTUREPATH
+
 
 def handle_black(func):
     def wrapper(*args,**kwargs):
@@ -16,13 +18,13 @@ def handle_black(func):
         try:
             with allure.step(f'测试步骤：{explain}'):
                 instance.driver.save_screenshot('tmp.png')
-                allure.attach.file('tmp.png', attachment_type=allure.attachment_type.PNG)
+                allure.attach.file(WEBPICTUREPATH + 'tmp.png', attachment_type=allure.attachment_type.PNG)
                 result = func(*args, **kwargs)
             instance.err_num = 0
             return result
         except Exception as e:
             instance.driver.save_screenshot('tmp.png')
-            allure.attach.file('tmp.png', attachment_type=allure.attachment_type.PNG)
+            allure.attach.file(WEBPICTUREPATH + 'tmp.png', attachment_type=allure.attachment_type.PNG)
             if instance.err_num > instance.max_num:
                 raise e
             instance.err_num += 1
