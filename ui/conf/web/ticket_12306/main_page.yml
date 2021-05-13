@@ -1,0 +1,45 @@
+# 数据配置模板，注意格式！
+env:
+#  环境配置
+    dev: 'https://www.12306.dev/'
+    test: 'https://www.12306.test/'
+    prod: 'https://www.12306.cn/'
+
+url:
+# url配置，注意配置相对路径！
+  - index: 'index/index.html'
+
+from_station:
+#  出发地
+#  id:定位元素的方法
+#  locator：元素定位
+#  action：要执行的动作，多个动作使用,分割
+#  context：要输入的内容，不需要时缺省
+#  locator_target：鼠标拖拽动作的目标元素，不需要时缺省
+#  多次操作需要多个步骤
+
+  - by: id
+    locator: 'fromStationText'
+    action: click,clear,send_keys
+    context: '杭州东'
+
+  - by: id
+    locator: 'citem_0'
+    action: click
+
+to_station:
+#  到达地
+  - by: id
+    locator: 'toStationText'
+    action: click,clear,send_keys
+    context: '上海虹桥'
+
+  - by: id
+    locator: 'citem_0'
+    action: click
+
+search_one:
+#  查询
+  - by: id
+    locator: 'search_one'
+    action: click

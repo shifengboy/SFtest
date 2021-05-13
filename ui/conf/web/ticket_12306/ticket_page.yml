@@ -1,0 +1,5 @@
+book_button:
+#  查询
+  - by: class name
+    locator: 'btn72'
+    action: click
