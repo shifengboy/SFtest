@@ -11,13 +11,14 @@ import yaml
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from sftest import *
 from ui.lib.core.handle_black import handle_black
 from ui.lib.core.logger import logger
-
 
 def get_env():
     # 获取测试环境
@@ -30,7 +31,7 @@ def get_env():
     return env
 
 
-class Base:
+class Base():
 
     black_list = [(By.XPATH, '//*[@class="btn2"]')]
     max_num = 3
@@ -97,8 +98,7 @@ class Base:
                     url_relative = step[url_name]
                     url = url_base + url_relative
                     logger.debug(f'打开链接:{url}')
-                    self.driver.get(url)
-                    break
+                    return self.driver.get(url)
             else:
                 logger.error(f'链接打开失败，请检查链接名{url_name}是否正确！')
                 raise Exception(f'链接打开失败，请检查链接名{url_name}是否正确！')
@@ -169,7 +169,7 @@ class Base:
                     target = self.find(step['by'], step['locator_target'], *args, **kargs)
                     ActionChains(self.driver).drag_and_drop(el, target).perform()
             except Exception as e:
-                logger.debug(f'对元素{by}，{locator}）,进行{action}操作时出现错误：{e}')
+                logger.debug(f'对元素({by}，{locator}）,进行{action}操作时出现错误：{e}')
                 raise e
 
     def js(self, script):
@@ -179,6 +179,7 @@ class Base:
         Usage:
         driver.js("window.scrollTo(200,1000);")
         '''
+        logger.debug(f'执行脚本:{script}')
         self.driver.execute_script(script)
 
     def switch_to_frame(self, locator):
@@ -273,7 +274,7 @@ class Base:
         '''
         self.driver.switch_to.default_content()
 
-    def open_new_window(self, by, locator=None):
+    def open_new_window(self, path, func_name, *args, **kargs):
         '''
         Open the new window and switch the handle to the newly opened window.
 
@@ -281,15 +282,15 @@ class Base:
         driver.open_new_window()
         '''
         original_windows = self.driver.current_window_handle
-        el = self.find(by, locator)
-        el.click()
+        self.parse_yaml(path, func_name, *args, **kargs)
         all_handles = self.driver.window_handles
         for handle in all_handles:
             if handle != original_windows:
                 self.driver.switch_to.window(handle)
 
+
 if __name__ == '__main__':
-    with open('/Users/chenshifeng/MyCode/PythonCode/sftest/ui/conf/web/12306/main_page.yml', encoding='UTF-8') as f:
+    with open('/ui/conf/web/ticket_12306/main_page.yml', encoding='UTF-8') as f:
         datas = yaml.safe_load(f)
         print(datas['env'])
         if 'dev2' in datas['env']:
