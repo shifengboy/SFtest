@@ -20,29 +20,24 @@ from sftest import *
 from ui.lib.core.handle_black import handle_black
 from ui.lib.core.logger import logger
 
-def get_env():
-    # 获取测试环境
-    try:
-        env = os.environ["env"]
-        logger.debug(f'本次UI自动化运行环境为{env}环境')
-    except KeyError:
-        env = 'prod'
-        logger.debug(f'没有配置测试环境, 默认在生产环境{env}进行自动化测试')
-    return env
-
 
 class Base():
-
     black_list = [(By.XPATH, '//*[@class="btn2"]')]
     max_num = 3
     err_num = 0
 
-    def __init__(self, page=None, browser='chrome'):
+    def __init__(self, driver=None, browser='chrome', env = None,remote=False, remote_url=None):
         '''
         运行类初始化方法，默认使用来Chrome浏览器。当然，你也可以传递参数为其他浏览器。
         '''
-        if page == None:
-            if browser == "firefox" or browser == "ff":
+        self.env = env
+        self.remote = remote
+        self.remote_url = remote_url
+        if driver == None:
+            remote = self.get_remote
+            if remote is not None:
+                driver = webdriver.Remote(remote_url)
+            elif browser == "firefox" or browser == "ff":
                 driver = webdriver.Firefox()
             elif browser == "chrome":
                 option = webdriver.ChromeOptions()
@@ -57,15 +52,37 @@ class Base():
             elif browser == 'edge':
                 driver = webdriver.Edge()
             try:
-                logger.debug(f'本次使用{browser}浏览器进行自动化测试')
+                if remote is True:
+                    logger.debug(f'本次使用远程hub节点{remote_url}运行行自动化测试')
+                else:
+                    logger.debug(f'本次使用{browser}浏览器进行自动化测试')
                 self.driver = driver
                 self.driver.maximize_window()
             except Exception:
-                logger.debug("Not found %s browser,You can enter 'ie', 'ff', 'opera', 'phantomjs', 'edge' or 'chrome'." % browser)
+                logger.debug(
+                    "Not found %s browser,You can enter 'ie', 'ff', 'opera', 'phantomjs', 'edge' or 'chrome'." % browser)
                 raise NameError(
                     "Not found %s browser,You can enter 'ie', 'ff', 'opera', 'phantomjs', 'edge' or 'chrome'." % browser)
         else:
-            self.driver = page.driver
+            self.driver = driver
+
+    @property
+    def get_remote(self):
+        #     获取远程节点
+        remote_url = None
+        try:
+            remote = self.remote
+            if remote:
+                remote_url = self.remote_url
+                if remote_url is None:
+                    remote_url = os.environ["remote_url"]
+                logger.debug(f'获取到远程节点{remote_url}')
+            else:
+                logger.debug('不启用远程节点配置')
+        except Exception:
+            logger.debug('未获取到远程节点，请确认配置！')
+            raise Exception
+        return remote_url
 
     def open(self, url):
         '''
@@ -76,13 +93,28 @@ class Base():
         logger.debug(f'打开链接{url}')
         self.driver.get(url)
 
+    @property
+    def get_env(self):
+        # 获取测试环境
+        try:
+            env = os.environ["env"]
+            logger.debug(f'本次UI自动化运行环境为{env}环境')
+        except KeyError:
+            env = self.env
+            if env is None:
+                env = 'prod'
+                logger.debug(f'没有配置测试环境, 默认在生产环境{env}进行自动化测试')
+            else:
+                logger.debug(f'本次UI自动化运行环境为{env}环境')
+        return env
+
     def open_by_yaml(self, path, url_name, func_name='url'):
         '''
         打开连接
         :param url:
         :return:
         '''
-        env = get_env()
+        env = self.get_env
         with open(path, encoding='UTF-8') as f:
             datas = yaml.safe_load(f)
             data_env = datas['env']
@@ -102,7 +134,6 @@ class Base():
             else:
                 logger.error(f'链接打开失败，请检查链接名{url_name}是否正确！')
                 raise Exception(f'链接打开失败，请检查链接名{url_name}是否正确！')
-
 
     def quit_driver(self):
         self.driver.quit()
@@ -244,7 +275,6 @@ class Base():
         '''
         return self.driver.current_url
 
-
     def accept_alert(self):
         '''
         Accept warning box.
@@ -262,7 +292,6 @@ class Base():
         driver.dismiss_alert()
         '''
         self.driver.switch_to.alert.dismiss()
-
 
     def switch_to_frame_out(self):
         '''
