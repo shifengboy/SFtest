@@ -38,7 +38,7 @@ class MainPage(Base):
 
     def search_one(self):
         self.open_new_window(main_page_file, 'search_one', explain='查询车次信息')
-        return TicketPage(self)
+        return TicketPage(self.driver)
 
 
 if __name__ == '__main__':
