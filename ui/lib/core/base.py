@@ -52,7 +52,7 @@ class Base():
             elif browser == 'edge':
                 driver = webdriver.Edge()
             try:
-                if remote is True:
+                if remote is not None:
                     logger.debug(f'本次使用远程hub节点{remote_url}运行行自动化测试')
                 else:
                     logger.debug(f'本次使用{browser}浏览器进行自动化测试')
