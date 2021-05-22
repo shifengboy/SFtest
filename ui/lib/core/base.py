@@ -36,7 +36,7 @@ class Base():
         if driver == None:
             remote = self.get_remote
             if remote is not None:
-                driver = webdriver.Remote(remote_url)
+                driver = webdriver.Remote(self.remote_url)
             elif browser == "firefox" or browser == "ff":
                 driver = webdriver.Firefox()
             elif browser == "chrome":
