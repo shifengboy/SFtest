@@ -78,7 +78,12 @@ class Base():
                     remote_url = os.environ["remote_url"]
                 logger.debug(f'获取到远程节点{remote_url}')
             else:
-                logger.debug('不启用远程节点配置')
+                remote = os.environ["remote"]
+                if remote:
+                    remote_url = os.environ["remote_url"]
+                    logger.debug(f'获取到远程节点{remote_url}')
+                else:
+                    logger.debug('不启用远程节点配置')
         except Exception:
             logger.debug('未获取到远程节点，请确认配置！')
             raise Exception
