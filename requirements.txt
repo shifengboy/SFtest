@@ -2,6 +2,7 @@ allure-pytest
 appium-python-client
 pytest==5.4.3
 pytest-testconfig
+pytest-rerunfailures
 requests
 selenium
 PyYaml
