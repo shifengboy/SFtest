@@ -143,7 +143,6 @@ class Base():
     def quit_driver(self):
         self.driver.quit()
 
-    @handle_black
     def find(self, by, locator=None, timeout=10, *args, **kargs) -> WebElement:
         '''
         判断元素是否可点击
@@ -174,6 +173,7 @@ class Base():
             datas = yaml.safe_load(f)
             self.parse(datas[func_name], *args, **kargs)
 
+    @handle_black
     def parse(self, steps, *args, **kargs):
         '''
         操作元素
