@@ -52,7 +52,7 @@ class Base():
             elif browser == 'edge':
                 driver = webdriver.Edge()
             try:
-                if remote is not None:
+                if remote:
                     logger.debug(f'本次使用远程hub节点{remote_url}运行行自动化测试')
                 else:
                     logger.debug(f'本次使用{browser}浏览器进行自动化测试')
@@ -78,14 +78,14 @@ class Base():
                     remote_url = os.environ["remote_url"]
                 logger.debug(f'获取到远程节点{remote_url}')
             else:
-                remote = os.environ["remote"]
+                remote = os.environ.get('remote')
                 if remote:
                     remote_url = os.environ["remote_url"]
                     logger.debug(f'获取到远程节点{remote_url}')
                 else:
                     logger.debug('不启用远程节点配置')
         except Exception:
-            logger.debug('未获取到远程节点，请确认配置！')
+            logger.debug('获取远程节点配置出现位置异常！')
             raise Exception
         return remote_url
 
