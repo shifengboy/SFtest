@@ -26,7 +26,7 @@ class Test12306:
     @allure.story("查询余票story")
     @allure.title('查询余票title')
     @pytest.mark.flaky(reruns=3, reruns_delay=2)
-    def test_Query_tickets(self):
+    def test_query_tickets(self):
         '''查询余票'''
         self.page = self.page.open_page().from_StationText().to_station().train_date().search_one().book_button()
 
