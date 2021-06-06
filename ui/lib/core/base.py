@@ -6,6 +6,7 @@
 @time:2021/05/01
 """
 import os
+import time
 
 import yaml
 from selenium import webdriver
@@ -26,7 +27,7 @@ class Base():
     max_num = 3
     err_num = 0
 
-    def __init__(self, driver=None, browser='chrome', env = None,remote=False, remote_url=None):
+    def __init__(self, driver: WebElement = None, browser='chrome', env=None, remote=False, remote_url=None):
         '''
         运行类初始化方法，默认使用来Chrome浏览器。当然，你也可以传递参数为其他浏览器。
         '''
@@ -78,14 +79,14 @@ class Base():
                     remote_url = os.environ["remote_url"]
                 logger.debug(f'获取到远程节点{remote_url}')
             else:
-                remote = os.environ.get('remote')
+                remote = os.environ.get("remote")
                 if remote:
                     remote_url = os.environ["remote_url"]
                     logger.debug(f'获取到远程节点{remote_url}')
                 else:
                     logger.debug('不启用远程节点配置')
         except Exception:
-            logger.debug('获取远程节点配置出现位置异常！')
+            logger.debug('获取远程节点出现未知异常！')
             raise Exception
         return remote_url
 
@@ -114,11 +115,16 @@ class Base():
         return env
 
     def open_by_yaml(self, path, url_name, func_name='url'):
-        '''
+        """
         打开连接
-        :param url:
-        :return:
-        '''
+        Args:
+            path:yml文件路径
+            url_name:路径名
+            func_name:路径所在的方法名
+
+        Returns:
+
+        """
         env = self.get_env
         with open(path, encoding='UTF-8') as f:
             datas = yaml.safe_load(f)
@@ -143,7 +149,7 @@ class Base():
     def quit_driver(self):
         self.driver.quit()
 
-    def find(self, by, locator=None, timeout=10, *args, **kargs) -> WebElement:
+    def find(self, by, locator=None, timeout=20, *args, **kargs) -> WebElement:
         '''
         判断元素是否可点击
         :param by:
@@ -151,6 +157,7 @@ class Base():
         :return:
         '''
         logger.debug(f'查找元素:（{by}，{locator}）')
+        # time.sleep(0.5)  # 手动延时，避免点击过快
         if locator is None:
             result = WebDriverWait(self.driver, timeout=timeout).until(expected_conditions.element_to_be_clickable(*by))
         else:
@@ -158,6 +165,23 @@ class Base():
                 expected_conditions.element_to_be_clickable((by, locator)))
         logger.debug(f'查找元素结果：{result}')
         return result
+
+    def finds(self, by, locator=None, timeout=20, *args, **kargs) -> list[WebElement]:
+        '''
+        判断元素是否可点击
+        :param by:
+        :param locator:
+        :return:
+        '''
+        logger.debug(f'查找元素集:（{by}，{locator}）')
+
+        if locator is None:
+            elements: list[WebElement] = WebDriverWait(self.driver, 10).until(lambda x: x.find_elements(*by))
+        else:
+            elements: list[WebElement] = WebDriverWait(self.driver, 10).until(lambda x: x.find_elements(by, locator))
+
+        logger.debug(f'查找元素结果集：{elements}')
+        return elements
 
     def parse_yaml(self, path, func_name, *args, **kargs):
         '''
@@ -186,14 +210,14 @@ class Base():
             by = step['by']
             locator = step['locator']
             action = step['action']
-            logger.debug(f'对元素{by}，{locator}）,进行{action}操作')
+            logger.debug(f'对元素({by}，{locator}）,进行{action}操作')
             try:
                 if 'clear' in action:  # 清除输入框
                     self.find(by, locator, *args, **kargs).clear()
                 if 'click' in action:  # 点击元素
                     self.find(by, locator, *args, **kargs).click()
                 if 'send_keys' in action:  # 输入内容
-                    self.find(by, locator, *args, **kargs).send_keys(step['context'])
+                    self.find(by, locator, *args, **kargs).send_keys(self.function_analysis(step['context']))
                 if 'right_click' in action:  # 右击
                     el = self.find(by, locator, *args, **kargs)
                     ActionChains(self.driver).context_click(el).perform()
@@ -204,9 +228,35 @@ class Base():
                     el = self.find(by, locator, *args, **kargs)
                     target = self.find(step['by'], step['locator_target'], *args, **kargs)
                     ActionChains(self.driver).drag_and_drop(el, target).perform()
+                if 'clicks' in action:  # 点击所有元素
+                    eles = self.finds(by, locator, *args, **kargs)
+                    for ele in eles:
+                        # 部分元素无法点击时，不报错
+                        try:
+                            ele.click()
+                        except Exception:
+                            pass
             except Exception as e:
                 logger.debug(f'对元素({by}，{locator}）,进行{action}操作时出现错误：{e}')
                 raise e
+
+    def function_analysis(self, funtion):
+        '''函数解析
+
+        Usage:
+        function_analysis('shifeng$get_date()')
+        '''
+        s = funtion
+        if s.find('$') != -1:
+            if s.find('{') != -1 and s.find('}') != -1:
+                fun = s.split('{')[1].split('}')[0]
+                s_new = s.split('$')[0] + eval(fun) + s.split('}')[1]
+            else:
+                fun = s.split('$')[1]
+                s_new = s.split('$')[0] + eval(fun)
+        else:
+            s_new = s
+        return s_new
 
     def js(self, script):
         '''
@@ -217,6 +267,19 @@ class Base():
         '''
         logger.debug(f'执行脚本:{script}')
         self.driver.execute_script(script)
+
+    def move_to_right_continued(self, element, number=10):
+        '''
+        点击某元素，并连续点击右键，解决表格右滑问题
+        Args:
+            element: 点击的元素
+            number: 需要点右键的次数。默认10
+
+        Returns:
+
+        '''
+        for i in range(number):
+            ActionChains(self.driver).click_and_hold(element).send_keys(Keys.RIGHT).perform()
 
     def switch_to_frame(self, locator):
         '''
@@ -324,7 +387,7 @@ class Base():
 
 
 if __name__ == '__main__':
-    with open('/ui/conf/web/ticket_12306/main_page.yml', encoding='UTF-8') as f:
+    with open('/ui/conf/web/ticket_12306/inside_admin_page.yml', encoding='UTF-8') as f:
         datas = yaml.safe_load(f)
         print(datas['env'])
         if 'dev2' in datas['env']:
