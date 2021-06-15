@@ -34,6 +34,8 @@ class Base():
         self.env = env
         self.remote = remote
         self.remote_url = remote_url
+        self.browser = browser
+        browser = self.get_browser
         if driver == None:
             remote_url = self.get_remote
             if remote_url is not None:
@@ -89,6 +91,14 @@ class Base():
             logger.debug('获取远程节点出现未知异常！')
             raise Exception
         return remote_url
+
+    @property
+    def get_browser(self):
+        #     获取浏览器
+        browser = os.environ["browser"]
+        if browser is None:
+            browser = self.browser
+        return browser
 
     def open(self, url):
         '''
