@@ -78,7 +78,7 @@ class Base():
             if remote:
                 remote_url = self.remote_url
                 if remote_url is None:
-                    remote_url = os.environ["remote_url"]
+                    remote_url = os.environ.get("remote")
                 logger.debug(f'获取到远程节点{remote_url}')
             else:
                 remote = os.environ.get("remote")
@@ -95,7 +95,7 @@ class Base():
     @property
     def get_browser(self):
         #     获取浏览器
-        browser = os.environ["browser"]
+        browser = os.environ.get('browser')
         if browser is None:
             browser = self.browser
         return browser
@@ -169,10 +169,10 @@ class Base():
         logger.debug(f'查找元素:（{by}，{locator}）')
         # time.sleep(0.5)  # 手动延时，避免点击过快
         if locator is None:
-            result = WebDriverWait(self.driver, timeout=timeout).until(expected_conditions.element_to_be_clickable(*by))
+            result = WebDriverWait(self.driver, timeout=timeout).until(expected_conditions.presence_of_element_located(*by))
         else:
             result = WebDriverWait(self.driver, timeout=timeout).until(
-                expected_conditions.element_to_be_clickable((by, locator)))
+                expected_conditions.presence_of_element_located((by, locator)))
         logger.debug(f'查找元素结果：{result}')
         return result
 
@@ -371,6 +371,9 @@ class Base():
         '''
         self.driver.switch_to.alert.dismiss()
 
+    def refresh(self):
+        self.driver.refresh()
+
     def switch_to_frame_out(self):
         '''
         Returns the current form machine form at the next higher level.
@@ -394,6 +397,18 @@ class Base():
         for handle in all_handles:
             if handle != original_windows:
                 self.driver.switch_to.window(handle)
+
+    def assert_result(self, element, timeout=20):
+        '''
+        断言
+        :param element:
+        :param timeout:
+        :return:
+        '''
+        result = WebDriverWait(self.driver, timeout).until(lambda x: element in x.page_source)  # 解决手机卡顿造成的误判
+        logger.info(f'断言结果：{result}')
+        return result
+
 
 
 if __name__ == '__main__':
