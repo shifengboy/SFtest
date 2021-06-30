@@ -409,6 +409,14 @@ class Base():
         logger.info(f'断言结果：{result}')
         return result
 
+    def time_sleep(self,time=3):
+        '''
+        强制时间等待
+        :param time: 要等待的时间
+        :return:
+        '''
+        sleep(time)
+
 
 
 if __name__ == '__main__':
