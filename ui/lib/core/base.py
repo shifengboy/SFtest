@@ -169,10 +169,17 @@ class Base():
         logger.debug(f'查找元素:（{by}，{locator}）')
         # time.sleep(0.5)  # 手动延时，避免点击过快
         if locator is None:
-            result = WebDriverWait(self.driver, timeout=timeout).until(expected_conditions.presence_of_element_located(*by))
+            try:
+                result = WebDriverWait(self.driver, timeout).until(expected_conditions.element_to_be_clickable(*by))
+            except Exception:
+                result = WebDriverWait(self.driver, timeout).until(expected_conditions.presence_of_element_located(*by))
         else:
-            result = WebDriverWait(self.driver, timeout=timeout).until(
-                expected_conditions.presence_of_element_located((by, locator)))
+            try:
+                result = WebDriverWait(self.driver, timeout).until(
+                    expected_conditions.element_to_be_clickable((by, locator)))
+            except Exception:
+                result = WebDriverWait(self.driver, timeout).until(
+                    expected_conditions.presence_of_element_located((by, locator)))
         logger.debug(f'查找元素结果：{result}')
         return result
 
@@ -416,6 +423,7 @@ class Base():
         :return:
         '''
         sleep(time)
+        return self
 
 
 
