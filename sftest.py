@@ -2,12 +2,21 @@
 # -*- coding: UTF-8 -*-
 """
 @author:chenshifeng
-@file:sftest.py
+@file:sfuitest.py
 @time:2021/05/12
 @功能：存放一些公共方法
 """
 import datetime
 import random
+import time
+
+
+def sleep(tmie=2):
+    '''
+    强制等待时间吗
+    :return:
+    '''
+    return time.sleep(tmie)
 
 
 def get_random_number(digit: int):
@@ -80,11 +89,6 @@ def get_time(days=0, hours=0, minutes=0):
     now_time = datetime.datetime.now()
 
     return (now_time + datetime.timedelta(days=days, hours=hours, minutes=minutes)).strftime("%Y%m%d%H%M%S")  # 获取后一天
-
-
-
-
-
 
 
 if __name__ == '__main__':
