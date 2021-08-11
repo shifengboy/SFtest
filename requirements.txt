@@ -6,4 +6,4 @@ pytest-rerunfailures
 requests
 selenium
 PyYaml
-httprunner
+# httprunner
