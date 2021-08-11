@@ -1,5 +1,8 @@
+import logging
 from logging import handlers
 import requests
+
+from lib.core.ext.config import Configure, ConfType
 from lib.core.path import WEBLOGPATH
 from lib.core.tool import LoadsDumps
 
