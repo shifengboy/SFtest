@@ -1,5 +1,5 @@
-# sftest
-这是一个基于Python语言的接口和ui自动化测试框架
+# sfuitest
+这是一个基于Python语言的ui自动化测试框架
 
 环境搭建参考：
 - Windows：[https://www.cnblogs.com/feng0815/p/8179714.html](https://www.cnblogs.com/feng0815/p/8179714.html)
@@ -7,11 +7,6 @@
 
 使用前请执行 `pip3 install -r requirements.txt` 命令安装依赖插件，否则我保证你运行不起来……
 
-# interface: 接口自动化框架<br/>
-该框架采用httprunner接口测试框架，由于这个框架太好用，暂时还不知道该添加什么功能……
-
-使用文档参考：https://www.cnblogs.com/feng0815/p/14402863.html
- 
   
 # ui: UI自动化框架<br/>
 采用 selenium+appium+pytest+allure框架，基于 page object 模式进行基于数据驱动的二次封装<br/>
