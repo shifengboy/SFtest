@@ -13,7 +13,7 @@ from lib.core.path import WEBPICTUREPATH
 
 def handle_black(func):
     def wrapper(*args,**kwargs):
-        from lib import Base
+        from lib.core.base import Base
         instance: Base = args[0]
         explain = kwargs.get('explain')
         try:
