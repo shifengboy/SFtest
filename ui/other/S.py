@@ -1,12 +1,20 @@
-import subprocess
+# 在百度搜索框输入  python ，复制粘贴搜狗输入框进行搜索
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
 
-# code, re = subprocess.getstatusoutput('dir')
-#
-# print(re)
-# print(code)
-
-s = subprocess.Popen('python', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-s.stdin.write(b'print(1123123) \n')
-out, erro = s.communicate()
-print(out)
-subprocess.run()
+driver = webdriver.Chrome()
+driver.get('http://www.baidu.com')
+driver.maximize_window()
+driver.find_element_by_css_selector('#kw').send_keys('python')
+sleep(2)
+driver.find_element_by_css_selector('#kw').send_keys(Keys.CONTROL, 'a')  # 全选
+driver.find_element_by_css_selector('#kw').send_keys(Keys.CONTROL, 'c')  # 复制
+driver.find_element_by_css_selector('#kw').send_keys(Keys.CONTROL, 'x')  # 剪切
+sleep(2)
+driver.get('http://www.sogou.com')
+driver.find_element_by_css_selector('.sec-input').send_keys(Keys.CONTROL, 'v')  # 粘贴
+sleep(2)
+driver.find_element_by_css_selector('#stb').click()
+sleep(2)
+driver.quit()

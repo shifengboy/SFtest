@@ -2,8 +2,9 @@
 # -*- coding: UTF-8 -*-
 """
 @author:chenshifeng
-@file:handle_black2.py
-@time:2020/11/08
+@file:handle_black.py
+@time:2021/05/01
+@功能：处理操作步骤及异常处理
 """
 import allure
 

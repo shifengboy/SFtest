@@ -193,9 +193,9 @@ class Base():
         logger.debug(f'查找元素集:（{by}，{locator}）')
 
         if locator is None:
-            elements: list[WebElement] = WebDriverWait(self.driver, 10).until(lambda x: x.find_elements(*by))
+            elements: list[WebElement] = WebDriverWait(self.driver, timeout).until(lambda x: x.find_elements(*by))
         else:
-            elements: list[WebElement] = WebDriverWait(self.driver, 10).until(lambda x: x.find_elements(by, locator))
+            elements: list[WebElement] = WebDriverWait(self.driver, timeout).until(lambda x: x.find_elements(by, locator))
 
         logger.debug(f'查找元素结果集：{elements}')
         return elements
