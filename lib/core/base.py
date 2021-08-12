@@ -9,6 +9,7 @@ import os
 
 import yaml
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -18,7 +19,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from lib.core.handle_black import handle_black
 from lib.core.logger import logger
-
+from sftest import *
 
 class Base():
     black_list = [(By.XPATH, '//*[@class="btn2"]')]
@@ -225,7 +226,9 @@ class Base():
             by = step['by']
             locator = step['locator']
             action = step['action']
+            skip = step.get("skip")
             logger.debug(f'对元素({by}，{locator}）,进行{action}操作')
+            action = action.split(',')
             try:
                 if 'clear' in action:  # 清除输入框
                     self.find(by, locator, *args, **kargs).clear()
@@ -245,12 +248,19 @@ class Base():
                     ActionChains(self.driver).drag_and_drop(el, target).perform()
                 if 'clicks' in action:  # 点击所有元素
                     eles = self.finds(by, locator, *args, **kargs)
+                    # 对元素集合分别做点击操作
                     for ele in eles:
                         # 部分元素无法点击时，不报错
                         try:
                             ele.click()
                         except Exception:
                             pass
+            except TimeoutException:
+                if skip:
+                    logger.info(f"元素集({by}，{locator}）为空，跳过不处理")
+                else:
+                    raise TimeoutException(f"元素集({by}，{locator}）为空，无法跳过，请检查元素是否存在")
+
             except Exception as e:
                 logger.debug(f'对元素({by}，{locator}）,进行{action}操作时出现错误：{e}')
                 raise e
