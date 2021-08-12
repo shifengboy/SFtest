@@ -4,7 +4,7 @@
 #    locator:  要定位的元素
 #    action:  对元素进行的操作，有click(点击),clear（清除）,send_keys（输入值）,clicks（对元素集进行点击）
 #    context:  要输入的值，只针对send_keys操作
-#    require: 是否必填，默认必填，值为false时为非必填，此时如果元素不存在，不报错，直接进入下一步
+#    skip: 是否必填，默认必填，值为true时为非必填，此时如果元素不存在，不报错，直接进入下一步
 
 env:
 #  环境配置
