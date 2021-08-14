@@ -34,6 +34,7 @@ report: 存放测试报告和图片<br/>
 bin: 运行入口<br/>
 &emsp;&emsp;apprun: 运行移动端case<br/>
 &emsp;&emsp;webrun: 运行PC端case<br/>
+sftest.py:辅助函数，存放一些公共方法，用于脚本运行时调用
 
 
 
