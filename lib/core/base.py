@@ -17,7 +17,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-from lib.core.handle_black import handle_black
+from lib.core.handle import handle
 from lib.core.logger import logger
 from sftest import *
 
@@ -213,7 +213,7 @@ class Base():
             datas = yaml.safe_load(f)
             self.parse(datas[func_name], *args, **kargs)
 
-    @handle_black
+    @handle
     def parse(self, steps, *args, **kargs):
         '''
         操作元素
@@ -436,8 +436,7 @@ class Base():
 
 
 if __name__ == '__main__':
-    with open('/ui/conf/web/ticket_12306/inside_admin_page.yml', encoding='UTF-8') as f:
+    with open('/Users/chenshifeng/MyCode/PythonCode/sfuitest/conf/web/XMCZ/create_person_page.yml', encoding='UTF-8') as f:
         datas = yaml.safe_load(f)
-        print(datas['env'])
-        if 'dev2' in datas['env']:
-            print("ok")
+        print(datas)
+

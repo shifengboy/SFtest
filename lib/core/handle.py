@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 """
 @author:chenshifeng
-@file:handle_black.py
+@file:handle.py
 @time:2021/05/01
 @功能：处理操作步骤及异常处理
 """
@@ -11,7 +11,7 @@ import allure
 from lib.core.path import WEBPICTUREPATH
 
 
-def handle_black(func):
+def handle(func):
     def wrapper(*args,**kwargs):
         from lib.core.base import Base
         instance: Base = args[0]

@@ -9,8 +9,8 @@ from appium.webdriver import WebElement
 from appium.webdriver.connectiontype import ConnectionType
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from lib import Base
-from lib.core.handle_black import handle_black
+from lib.core.base import Base
+from lib.core.handle import handle
 from lib.core.logger import logger
 
 
@@ -74,7 +74,7 @@ class Baseapp(Base):
         for i in range(n):
             self.driverriver.swipe(x1, y1, x2, y1, t)
 
-    @handle_black
+    @handle
     def find(self, by, locator=None, timeout=10, *args, **kargs) -> WebElement:
         '''
         判断元素是否可点击
