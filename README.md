@@ -21,7 +21,7 @@ lib:主要代码<br/>
 &emsp;&emsp;&emsp;&emsp;appController.py  启动appium服务、启动driver（对于server和deriver的一些管理操作，支持多线程）<br/>
 &emsp;&emsp;&emsp;&emsp;base.py: 基于selenium的二次封装，ing...<br/>
 &emsp;&emsp;&emsp;&emsp;baapp.py: 基于appium的二次封装，ing...<br/>
-&emsp;&emsp;&emsp;&emsp;handle_black.py: 装饰器，用来处理页面弹窗等异常情况，保存成功和失败的图片，生成测试步骤<br/>
+&emsp;&emsp;&emsp;&emsp;handle.py: 装饰器，用来处理页面弹窗等异常情况，保存成功和失败的图片，生成测试步骤<br/>
 &emsp;&emsp;&emsp;&emsp;tool.py 主要封装了工具类<br/>
 &emsp;&emsp;&emsp;&emsp;path.py: 存放各种路径地址<br/>
 &emsp;&emsp;page 存放各个页面的功能方法<br/>
@@ -34,7 +34,23 @@ report: 存放测试报告和图片<br/>
 bin: 运行入口<br/>
 &emsp;&emsp;apprun: 运行移动端case<br/>
 &emsp;&emsp;webrun: 运行PC端case<br/>
-sftest.py:辅助函数，存放一些公共方法，用于脚本运行时调用
+log:存放各种日志<br/>
+sftest.py:辅助函数，存放一些公共方法，用于脚本运行时调用<br/>
+
+功能：<br/>
+1、采用数据驱动的方式，所有定位元素数据存放在一份ymal文件中，方便后续维护
+
+2、采用PO思想，每个页面为一个类，页面中每个功能为一个方法，页面之间支持跳转
+
+3、编写用例时无需考虑具体实现细节，直接调用即可
+
+4、用例支持失败重跑，可设置重跑次数，避免环境不稳定造成的失败
+
+5、增加辅助函数功能，提供一些公共函数，脚本运行中可以直接调用，避免一些输入唯一性的校验
+
+6、页面元素定位不找支持跳过，主要针对一些非必填选择输入框，没有数据时不报错，不阻碍流程
+
+7、提供异常处理功能，对于一些页面可能出现的弹框等异常做处理
 
 
 
